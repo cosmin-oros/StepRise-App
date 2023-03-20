@@ -1,10 +1,19 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
+import MainScreen from './MainScreen';
+
+const defaultProps = {
+  steps: 0, 
+  level: 0, 
+  xp: 0, 
+  challengesCompleted: 0,
+  waterConsumed: 0
+}
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
+      <MainScreen {...defaultProps}></MainScreen>
       <StatusBar style="auto" />
     </View>
   );
