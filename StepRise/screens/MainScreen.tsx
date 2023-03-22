@@ -19,34 +19,24 @@ const MainScreen: React.FC<Props> = ({ steps, level, xp, challengesCompleted, wa
         <Text style={styles.cardValue}>{steps}</Text>
       </View>
 
-      <View style={styles.statsContainer}>
-        <View style={styles.card}>
-          <View style={styles.stat}>
-            <Text style={styles.statTitle}>Level</Text>
-            <Text style={styles.statValue}>{level}</Text>
-          </View>
-        </View>
+      <View style={styles.card}>
+        <Text style={styles.cardTitle}>Level</Text>
+        <Text style={styles.cardValue}>{level}</Text>
+      </View>
 
-        <View style={styles.card}>
-          <View style={styles.stat}>
-            <Text style={styles.statTitle}>XP</Text>
-            <Text style={styles.statValue}>{xp}</Text>
-          </View>
-        </View>
+      <View style={styles.card}>
+        <Text style={styles.cardTitle}>XP</Text>
+        <Text style={styles.cardValue}>{xp}</Text>
+      </View>
 
-        <View style={styles.card}>
-          <View style={styles.stat}>
-            <Text style={styles.statTitle}>Challenges Completed</Text>
-            <Text style={styles.statValue}>{challengesCompleted}</Text>
-          </View>
-        </View>
+      <View style={styles.card}>
+        <Text style={styles.cardTitle}>Challenges</Text>
+        <Text style={styles.cardValue}>{challengesCompleted}</Text>
+      </View>
 
-        <View style={styles.card}>
-          <View style={styles.stat}>
-            <Text style={styles.statTitle}>Water Consumed</Text>
-            <Text style={styles.statValue}>{waterConsumed} mL</Text>
-          </View>
-        </View>
+      <View style={styles.card}>
+        <Text style={styles.cardTitle}>Water</Text>
+        <Text style={styles.cardValue}>{waterConsumed} mL</Text>
       </View>
     </View>
   );
@@ -74,6 +64,7 @@ const styles = StyleSheet.create({
     marginBottom: 16,
     alignItems: 'center',
     justifyContent: 'center',
+    width: '80%',
   },
   cardTitle: {
     fontSize: 18,
@@ -85,24 +76,7 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: 'bold',
     color: '#ffffff',
-  },
-  statsContainer: {
-    paddingHorizontal: 16
-  },
-  stat: {
-    alignItems: 'center',
-  },
-  statTitle: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    marginBottom: 8,
-    color: '#ffffff',
-  },
-  statValue: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    color: '#ffffff',
-  },
+  }
 });
 
 export default MainScreen;
