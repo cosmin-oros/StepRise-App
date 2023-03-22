@@ -17,11 +17,13 @@ const MainScreen: React.FC<Props> = ({ steps, level, xp, challengesCompleted, wa
         <View style={styles.leftIcon}>
           <MaterialIcons name="account-circle" size={30} color="#fff" />
         </View>
-        <Text style={styles.title}>StepRise</Text>
+        
         <View style={styles.rightIcon}>
         <MaterialIcons name="settings" size={30} color="#fff" />
         </View>
       </View>
+
+      <Text style={styles.title}>StepRise</Text>
 
       <View style={styles.card}>
         <Text style={styles.cardTitle}>Today's Steps</Text>
