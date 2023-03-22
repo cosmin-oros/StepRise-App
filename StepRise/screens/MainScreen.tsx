@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 interface Props {
   steps: number;
@@ -12,7 +13,15 @@ interface Props {
 const MainScreen: React.FC<Props> = ({ steps, level, xp, challengesCompleted, waterConsumed }) => {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>StepRise</Text>
+      <View style={styles.header}>
+        <View style={styles.leftIcon}>
+          <MaterialIcons name="account-circle" size={30} color="#fff" />
+        </View>
+        <Text style={styles.title}>StepRise</Text>
+        <View style={styles.rightIcon}>
+        <MaterialIcons name="settings" size={30} color="#fff" />
+        </View>
+      </View>
 
       <View style={styles.card}>
         <Text style={styles.cardTitle}>Today's Steps</Text>
@@ -76,7 +85,38 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: 'bold',
     color: '#ffffff',
-  }
+  },
+  header: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    width: '100%',
+    height: 64,
+    paddingHorizontal: 16,
+    position: 'relative',
+  },
+  leftIcon: {
+    position: 'absolute',
+    top: 16,
+    left: 16,
+    width: 32,
+    height: 32,
+    backgroundColor: '#ffffff',
+    borderRadius: 16,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  rightIcon: {
+    position: 'absolute',
+    top: 16,
+    right: 16,
+    width: 32,
+    height: 32,
+    backgroundColor: '#ffffff',
+    borderRadius: 16,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
 });
 
 export default MainScreen;
