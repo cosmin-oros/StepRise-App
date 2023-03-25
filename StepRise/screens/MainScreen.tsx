@@ -8,9 +8,10 @@ interface Props {
   xp: number;
   challengesCompleted: number;
   waterConsumed: number;
+  navigation: any;
 }
 
-const MainScreen: React.FC<Props> = ({ steps, level, xp, challengesCompleted, waterConsumed }) => {
+const MainScreen: React.FC<Props> = ({ steps, level, xp, challengesCompleted, waterConsumed, navigation }) => {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -57,6 +58,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#082438',
+    width: '100%',
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -76,6 +78,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     width: '80%',
+    flex: 1,
   },
   cardTitle: {
     fontSize: 18,

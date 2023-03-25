@@ -17,7 +17,7 @@ const defaultProps = {
 export default function App() {
   return (
     <View style={styles.container}>
-      <MainScreen {...defaultProps}></MainScreen>
+      <MainScreen navigation={undefined} {...defaultProps}></MainScreen>
       <StatusBar style="auto" />
     </View>
   );
