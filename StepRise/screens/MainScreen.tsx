@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import SettingsScreen from './SettingsScreen';
@@ -18,6 +18,30 @@ type MainScreenProps = {
 }
 
 const MainScreen = ({ navigation } : MainScreenProps) => {
+  const [steps, setSteps] = useState<number>(0);
+  const [level, setLevel] = useState<number>(0);
+  const [xp, setXP] = useState<number>(0);
+  const [challengesCompleted, setChallengesCompleted] = useState<number>(0);
+  const [waterConsumed, setWaterConsumed] = useState<number>(0);
+
+  useEffect(() => {
+    const now: any = new Date();
+    const tomorrow: any = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1);
+    const timeToReset = tomorrow - now;
+
+    const timeoutId = setTimeout(() => {
+      setWaterConsumed(0);
+    }, timeToReset);
+
+    return () => {
+      clearTimeout(timeoutId);
+    }
+  }, [waterConsumed]);
+
+  const handleDrinkWater = (amount: number) => {
+    setWaterConsumed(waterConsumed + amount);
+  }
+
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -38,27 +62,34 @@ const MainScreen = ({ navigation } : MainScreenProps) => {
 
       <View style={styles.card}>
         <Text style={styles.cardTitle}>Today's Steps</Text>
-        {/* <Text style={styles.cardValue}>{steps}</Text> */}
+        <Text style={styles.cardValue}>{steps}</Text>
       </View>
 
       <View style={styles.card}>
         <Text style={styles.cardTitle}>Level</Text>
-        {/* <Text style={styles.cardValue}>{level}</Text> */}
-      </View>
-
-      <View style={styles.card}>
-        <Text style={styles.cardTitle}>XP</Text>
-        {/* <Text style={styles.cardValue}>{xp}</Text> */}
+        <Text style={styles.cardValue}>{level}</Text>
       </View>
 
       <View style={styles.card}>
         <Text style={styles.cardTitle}>Challenges</Text>
-        {/* <Text style={styles.cardValue}>{challengesCompleted}</Text> */}
+        <Text style={styles.cardValue}>{challengesCompleted}</Text>
       </View>
 
       <View style={styles.card}>
         <Text style={styles.cardTitle}>Water</Text>
-        {/* <Text style={styles.cardValue}>{waterConsumed} mL</Text> */}
+        <Text style={styles.cardValue}>{waterConsumed} mL</Text>
+        <TouchableOpacity onPress={() => handleDrinkWater(100)}>
+          <Text style={styles.cardAddition}>+100ml</Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => handleDrinkWater(250)}>
+          <Text style={styles.cardAddition}>+250ml</Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => handleDrinkWater(500)}>
+          <Text style={styles.cardAddition}>+500ml</Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => handleDrinkWater(1000)}>
+          <Text style={styles.cardAddition}>+1000ml</Text>
+        </TouchableOpacity>
       </View>
     </View>
   );
@@ -100,6 +131,14 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: 'bold',
     color: '#ffffff',
+  },
+  cardAddition: {
+    fontSize: 10,
+    fontWeight: 'bold',
+    color: '#ffffff',
+    flexDirection: 'row', 
+    alignItems: 'center', 
+    justifyContent: 'space-between',
   },
   header: {
     flexDirection: 'row',
