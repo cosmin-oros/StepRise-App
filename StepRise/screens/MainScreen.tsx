@@ -71,25 +71,29 @@ const MainScreen = ({ navigation } : MainScreenProps) => {
       </View>
 
       <View style={styles.card}>
-        <Text style={styles.cardTitle}>Challenges</Text>
+        <TouchableOpacity onPress={() => navigation.navigate('ChallengesScreen')}>
+          <Text style={styles.cardTitle}>Challenges</Text>
+        </TouchableOpacity>
         <Text style={styles.cardValue}>{challengesCompleted}</Text>
       </View>
 
       <View style={styles.card}>
         <Text style={styles.cardTitle}>Water</Text>
         <Text style={styles.cardValue}>{waterConsumed} mL</Text>
-        <TouchableOpacity onPress={() => handleDrinkWater(100)}>
-          <Text style={styles.cardAddition}>+100ml</Text>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => handleDrinkWater(250)}>
-          <Text style={styles.cardAddition}>+250ml</Text>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => handleDrinkWater(500)}>
-          <Text style={styles.cardAddition}>+500ml</Text>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => handleDrinkWater(1000)}>
-          <Text style={styles.cardAddition}>+1000ml</Text>
-        </TouchableOpacity>
+        <View style={styles.row}>
+          <TouchableOpacity onPress={() => handleDrinkWater(100)}>
+            <Text style={styles.cardAddition}>+100ml</Text>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => handleDrinkWater(250)}>
+            <Text style={styles.cardAddition}>+250ml</Text>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => handleDrinkWater(500)}>
+            <Text style={styles.cardAddition}>+500ml</Text>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => handleDrinkWater(1000)}>
+            <Text style={styles.cardAddition}>+1000ml</Text>
+          </TouchableOpacity>
+        </View>
       </View>
     </View>
   );
@@ -131,6 +135,12 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: 'bold',
     color: '#ffffff',
+  },
+  row: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    width: '80%',
   },
   cardAddition: {
     fontSize: 10,
