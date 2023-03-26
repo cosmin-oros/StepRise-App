@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
-const SettingsScreen = () => {
+const AccountScreen = () => {
     return(
         <View>
             
@@ -10,4 +10,4 @@ const SettingsScreen = () => {
     );
 };
 
-export default SettingsScreen;
+export default AccountScreen;

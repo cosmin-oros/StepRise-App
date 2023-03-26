@@ -1,6 +1,8 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import MainScreen from './screens/MainScreen';
+import SettingsScreen from './screens/SettingsScreen'
+import AccountScreen from './screens/AccountScreen';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
@@ -16,10 +18,13 @@ const defaultProps = {
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <MainScreen navigation={undefined} {...defaultProps}></MainScreen>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName='MainScreen'>
+        <Stack.Screen name='MainScreen' component={MainScreen}/>
+        <Stack.Screen name='SettingsScreen' component={SettingsScreen}/>
+        <Stack.Screen name='AccountScreen' component={AccountScreen}/>
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 

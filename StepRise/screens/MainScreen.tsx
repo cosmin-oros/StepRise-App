@@ -1,6 +1,8 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import SettingsScreen from './SettingsScreen';
+import { useNavigation, NavigationProp, ParamListBase } from '@react-navigation/native';
 
 interface Props {
   steps: number;
@@ -11,16 +13,24 @@ interface Props {
   navigation: any;
 }
 
-const MainScreen: React.FC<Props> = ({ steps, level, xp, challengesCompleted, waterConsumed, navigation }) => {
+type MainScreenProps = {
+  navigation: NavigationProp<ParamListBase, 'MainScreen'>;
+}
+
+const MainScreen = ({ navigation } : MainScreenProps) => {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
         <View style={styles.leftIcon}>
-          <MaterialIcons name="account-circle" size={30} color="#fff" />
+          <TouchableOpacity onPress={() => navigation.navigate('AccountScreen')}>
+            <MaterialIcons name="account-circle" size={30} color="#fff" />
+          </TouchableOpacity>
         </View>
         
         <View style={styles.rightIcon}>
-        <MaterialIcons name="settings" size={30} color="#fff" />
+          <TouchableOpacity onPress={() => navigation.navigate('SettingsScreen')}>
+            <MaterialIcons name="settings" size={30} color="#fff" />
+          </TouchableOpacity>
         </View>
       </View>
 
@@ -28,27 +38,27 @@ const MainScreen: React.FC<Props> = ({ steps, level, xp, challengesCompleted, wa
 
       <View style={styles.card}>
         <Text style={styles.cardTitle}>Today's Steps</Text>
-        <Text style={styles.cardValue}>{steps}</Text>
+        {/* <Text style={styles.cardValue}>{steps}</Text> */}
       </View>
 
       <View style={styles.card}>
         <Text style={styles.cardTitle}>Level</Text>
-        <Text style={styles.cardValue}>{level}</Text>
+        {/* <Text style={styles.cardValue}>{level}</Text> */}
       </View>
 
       <View style={styles.card}>
         <Text style={styles.cardTitle}>XP</Text>
-        <Text style={styles.cardValue}>{xp}</Text>
+        {/* <Text style={styles.cardValue}>{xp}</Text> */}
       </View>
 
       <View style={styles.card}>
         <Text style={styles.cardTitle}>Challenges</Text>
-        <Text style={styles.cardValue}>{challengesCompleted}</Text>
+        {/* <Text style={styles.cardValue}>{challengesCompleted}</Text> */}
       </View>
 
       <View style={styles.card}>
         <Text style={styles.cardTitle}>Water</Text>
-        <Text style={styles.cardValue}>{waterConsumed} mL</Text>
+        {/* <Text style={styles.cardValue}>{waterConsumed} mL</Text> */}
       </View>
     </View>
   );
