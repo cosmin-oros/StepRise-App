@@ -9,12 +9,38 @@ type SettingsScreenProps = {
 
 const SettingsScreen = ({ navigation } : SettingsScreenProps) => {
     return(
-        <View>
-            <TouchableOpacity onPress={() => navigation.navigate('MainScreen')}>
-                <Text>Back</Text>
+        <View style={styles.container}>
+            <TouchableOpacity style={styles.appButtonContainer} onPress={() => navigation.navigate('MainScreen')}>
+                <Text style={styles.appButtonText}>Back</Text>
             </TouchableOpacity>
         </View>
     );
 };
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        backgroundColor: '#082438',
+        width: '100%',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    appButtonContainer: {
+        backgroundColor: 'transparent', 
+        borderWidth: 1, 
+        borderColor: 'white', 
+        borderRadius: 10, 
+        paddingVertical: 10, 
+        paddingHorizontal: 20,
+        position: 'absolute', 
+        top: 20, 
+        left: 20
+    },
+    appButtonText: {
+        fontWeight: "bold",
+        color: 'white', 
+        fontSize: 16
+    }
+});
 
 export default SettingsScreen;
