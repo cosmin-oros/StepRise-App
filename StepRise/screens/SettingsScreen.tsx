@@ -13,6 +13,19 @@ const SettingsScreen = ({ navigation } : SettingsScreenProps) => {
             <TouchableOpacity style={styles.appButtonContainer} onPress={() => navigation.navigate('MainScreen')}>
                 <Text style={styles.appButtonText}>Back</Text>
             </TouchableOpacity>
+
+            
+            <View style={styles.section}>
+                <Text style={styles.sectionText}>Account</Text>
+            </View>
+
+            <View style={styles.section}>
+                <Text style={styles.sectionText}>Preferences</Text>
+            </View>
+
+            <View style={styles.section}>
+                <Text style={styles.sectionText}>Help</Text>
+            </View>
         </View>
     );
 };
@@ -40,6 +53,17 @@ const styles = StyleSheet.create({
         fontWeight: "bold",
         color: 'white', 
         fontSize: 16
+    },
+    section: {
+        backgroundColor: '#2C2C2C',
+        width: '100%',
+        height: 20
+    },
+    sectionText: {
+        fontWeight: "bold",
+        color: 'white', 
+        fontSize: 16,
+        left: 20
     }
 });
 
