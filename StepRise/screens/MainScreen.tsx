@@ -68,13 +68,14 @@ const MainScreen = ({ navigation } : MainScreenProps) => {
       <View style={styles.card}>
         <Text style={styles.cardTitle}>Level</Text>
         <Text style={styles.cardValue}>{level}</Text>
+        {/* create a progress bar for the level */}
       </View>
 
       <View style={styles.card}>
         <TouchableOpacity onPress={() => navigation.navigate('ChallengesScreen')}>
           <Text style={styles.cardTitle}>Challenges</Text>
         </TouchableOpacity>
-        <Text style={styles.cardValue}>{challengesCompleted}</Text>
+        <Text style={styles.cardValue}>{challengesCompleted}/0</Text>
       </View>
 
       <View style={styles.card}>
