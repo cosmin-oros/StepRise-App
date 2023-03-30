@@ -23,6 +23,7 @@ const MainScreen = ({ navigation } : MainScreenProps) => {
   const [xp, setXP] = useState<number>(0);
   const [challengesCompleted, setChallengesCompleted] = useState<number>(0);
   const [waterConsumed, setWaterConsumed] = useState<number>(0);
+  const [waterGoal, setWaterGoal] = useState<number>(2000);
 
   useEffect(() => {
     const now: any = new Date();
@@ -40,6 +41,11 @@ const MainScreen = ({ navigation } : MainScreenProps) => {
 
   const handleDrinkWater = (amount: number) => {
     setWaterConsumed(waterConsumed + amount);
+  }
+
+  // go to another screen to input the new water goal
+  const handleWaterGoal = () => {
+
   }
 
   return (
@@ -79,20 +85,22 @@ const MainScreen = ({ navigation } : MainScreenProps) => {
       </View>
 
       <View style={styles.card}>
+        {/* change the background of this card when water goal is met */}
         <Text style={styles.cardTitle}>Water</Text>
-        <Text style={styles.cardValue}>{waterConsumed} mL</Text>
+        <Text style={styles.cardValue}>{waterConsumed}/{waterGoal} mL</Text>
         <View style={styles.row}>
           <TouchableOpacity onPress={() => handleDrinkWater(100)}>
-            <Text style={styles.cardAddition}>+100ml</Text>
+            <MaterialIcons name="local-bar" size={30} color="#fff" />
           </TouchableOpacity>
           <TouchableOpacity onPress={() => handleDrinkWater(250)}>
-            <Text style={styles.cardAddition}>+250ml</Text>
+            <MaterialIcons name="local-drink" size={30} color="#fff" />
           </TouchableOpacity>
           <TouchableOpacity onPress={() => handleDrinkWater(500)}>
-            <Text style={styles.cardAddition}>+500ml</Text>
+            <MaterialIcons name="local-drink" size={30} color="#fff" />
+            <MaterialIcons name="local-drink" size={30} color="#fff" />
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => handleDrinkWater(1000)}>
-            <Text style={styles.cardAddition}>+1000ml</Text>
+          <TouchableOpacity onPress={() => handleWaterGoal()}>
+          <MaterialIcons name="update" size={30} color="#fff" />
           </TouchableOpacity>
         </View>
       </View>
