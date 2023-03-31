@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import SettingsScreen from './SettingsScreen';
+import ProgressBar from '../components/ProgressBar';
 import { useNavigation, NavigationProp, ParamListBase } from '@react-navigation/native';
 
 interface Props {
@@ -20,6 +20,7 @@ type MainScreenProps = {
 const MainScreen = ({ navigation } : MainScreenProps) => {
   const [steps, setSteps] = useState<number>(0);
   const [level, setLevel] = useState<number>(0);
+  const [xpGoal, setXpGoal] = useState<number>(100);
   const [xp, setXP] = useState<number>(0);
   const [challengesCompleted, setChallengesCompleted] = useState<number>(0);
   const [waterConsumed, setWaterConsumed] = useState<number>(0);
@@ -45,7 +46,7 @@ const MainScreen = ({ navigation } : MainScreenProps) => {
 
   // go to another screen to input the new water goal
   const handleWaterGoal = () => {
-
+    navigation.navigate('AccountScreen')
   }
 
   return (
@@ -74,7 +75,7 @@ const MainScreen = ({ navigation } : MainScreenProps) => {
       <View style={styles.card}>
         <Text style={styles.cardTitle}>Level</Text>
         <Text style={styles.cardValue}>{level}</Text>
-        {/* create a progress bar for the level */}
+        {/* <ProgressBar actual={xp} total={xpGoal}/> */}
       </View>
 
       <View style={styles.card}>
