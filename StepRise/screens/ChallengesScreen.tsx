@@ -14,6 +14,8 @@ const ChallengesScreen = ({ navigation } : ChallengesScreenProps) => {
             <TouchableOpacity style={styles.appButtonContainer} onPress={() => navigation.navigate('MainScreen')}>
                 <Text style={styles.appButtonText}>Back</Text>
             </TouchableOpacity>
+
+            {/* challenges give a certain amount of xp */}
         </View>
     );
 };

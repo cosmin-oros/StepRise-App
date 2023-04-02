@@ -37,6 +37,8 @@ const AccountScreen = ({ navigation } : AccountScreenProps) => {
                 </View>
                 )} */}
             </TouchableOpacity>
+
+            {/* maybe create a weekly leaderboard */}
         </View>
     );
 };

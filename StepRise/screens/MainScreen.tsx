@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import ProgressBar from '../components/ProgressBar';
 import { useNavigation, NavigationProp, ParamListBase } from '@react-navigation/native';
+// import { Pedometer } from 'react-native-pedometer';
 
 interface Props {
   steps: number;
@@ -90,6 +91,7 @@ const MainScreen = ({ navigation } : MainScreenProps) => {
         <Text style={styles.cardValue}>{steps}</Text>
       </View>
 
+      {/* when reaching the step goal / water goal for the day increase xp */}
       <View style={styles.card}>
         <Text style={styles.cardTitle}>Level</Text>
         <Text style={styles.cardValue}>{level}</Text>
