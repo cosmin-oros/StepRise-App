@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import ProgressBar from '../components/ProgressBar';
 import { useNavigation, NavigationProp, ParamListBase } from '@react-navigation/native';
-// import { Pedometer } from 'react-native-pedometer';
+import PedometerModule from '../react-native-pedometer';
 
 interface Props {
   steps: number;
@@ -13,6 +13,12 @@ interface Props {
   waterConsumed: number;
   navigation: any;
 }
+
+type PedometerResult = {
+  startDate: Date;
+  endDate: Date;
+  steps: number;
+};
 
 type MainScreenProps = {
   navigation: NavigationProp<ParamListBase, 'MainScreen'>;
@@ -48,6 +54,27 @@ const MainScreen = ({ navigation } : MainScreenProps) => {
       clearTimeout(timeoutId);
     }
   }, [waterConsumed]);
+
+  // counting steps
+  useEffect(() => {
+    let subscription: { remove: () => void } | undefined;
+
+    PedometerModule.isStepCountingAvailable((error: Error | null, isAvailable: boolean | null) => {
+      if (isAvailable) {
+        subscription = PedometerModule.subscribeToStepCountUpdates((stepCountData: PedometerResult) => {
+          setSteps(stepCountData.steps);
+        });
+      } else {
+        console.log('Step counting not available');
+      }
+    });
+
+    return () => {
+      if (subscription) {
+        PedometerModule.unsubscribeFromStepCountUpdates(subscription);
+      }
+    };
+  }, []);
 
   const handleDrinkWater = (amount: number) => {
     setWaterConsumed(waterConsumed + amount);
