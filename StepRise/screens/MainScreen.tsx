@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import ProgressBar from '../components/ProgressBar';
 import { useNavigation, NavigationProp, ParamListBase } from '@react-navigation/native';
-import PedometerModule from '../react-native-pedometer';
+// import PedometerModule from '../react-native-pedometer';
 
 interface Props {
   steps: number;
@@ -34,6 +34,7 @@ const maxXPByLevel = [
 
 const MainScreen = ({ navigation } : MainScreenProps) => {
   const [steps, setSteps] = useState<number>(0);
+  const [stepsGoal, setStepsGoal] = useState<number>(10000);
   const [level, setLevel] = useState<number>(1);
   const [xpGoal, setXpGoal] = useState<number>(100);
   const [xp, setXP] = useState<number>(0);
@@ -55,29 +56,32 @@ const MainScreen = ({ navigation } : MainScreenProps) => {
     }
   }, [waterConsumed]);
 
+  // fix this later
   // counting steps
-  useEffect(() => {
-    let subscription: { remove: () => void } | undefined;
+  // useEffect(() => {
+  //   let subscription: { remove: () => void } | undefined;
 
-    PedometerModule.isStepCountingAvailable((error: Error | null, isAvailable: boolean | null) => {
-      if (isAvailable) {
-        subscription = PedometerModule.subscribeToStepCountUpdates((stepCountData: PedometerResult) => {
-          setSteps(stepCountData.steps);
-        });
-      } else {
-        console.log('Step counting not available');
-      }
-    });
+  //   PedometerModule.isStepCountingAvailable((error: Error | null, isAvailable: boolean | null) => {
+  //     if (isAvailable) {
+  //       subscription = PedometerModule.subscribeToStepCountUpdates((stepCountData: PedometerResult) => {
+  //         setSteps(stepCountData.steps);
+  //       });
+  //     } else {
+  //       console.log('Step counting not available');
+  //     }
+  //   });
 
-    return () => {
-      if (subscription) {
-        PedometerModule.unsubscribeFromStepCountUpdates(subscription);
-      }
-    };
-  }, []);
+  //   return () => {
+  //     if (subscription) {
+  //       PedometerModule.unsubscribeFromStepCountUpdates(subscription);
+  //     }
+  //   };
+  // }, []);
 
   const handleDrinkWater = (amount: number) => {
-    setWaterConsumed(waterConsumed + amount);
+    if(waterConsumed + amount <= waterGoal) {
+      setWaterConsumed(waterConsumed + amount);
+    }
   }
 
   // go to another screen to input the new water goal
@@ -115,7 +119,7 @@ const MainScreen = ({ navigation } : MainScreenProps) => {
 
       <View style={styles.card}>
         <Text style={styles.cardTitle}>Today's Steps</Text>
-        <Text style={styles.cardValue}>{steps}</Text>
+        <Text style={styles.cardValue}>{steps}/{stepsGoal/1000}K</Text>
       </View>
 
       {/* when reaching the step goal / water goal for the day increase xp */}
